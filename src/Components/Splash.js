@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import AppDrawer from '../Navigation/AppDrawer';
 import { Actions } from 'react-native-router-flux';
+
+import { Provider } from 'react-redux';
+
+import store from '../../app/store'; //Import the store
+import Home from '../../app/components/home' //Import the component file
+import Login from '../../app/components/LoginScreen';
+
+
 export default class Splash extends React.Component {
 
-    static navigationOptions = ({ navigation }) => {
-        title: 'Splash'
-    }
+  
 
     constructor(props) {
         super(props);
@@ -15,8 +20,6 @@ export default class Splash extends React.Component {
             this.state = { email: '', password: '', device_token: '', device_type: '' };
 
     }
-
-
     componentDidMount() {
         StatusBar.setHidden(true);
         setTimeout(() => {
@@ -30,17 +33,15 @@ export default class Splash extends React.Component {
 
     render() {
         if (this.state.timePassed) {
-             Actions.drawerMenu({type:'replace'});
-            
+            <Provider store={store}>
+                <Login />
+            </Provider>
+
         }
         return (
-            <LinearGradient style={styles.indexContainer} colors={['#D980FA', '#12CBC4']}>
-                <TouchableOpacity >
-
-                    <Image style={styles.welcomeImage}
-                        source={require('../images/obaba.jpg')} />
-                </TouchableOpacity>
-            </LinearGradient>
+            <Provider store={store}>
+                <Login />
+            </Provider>
         );
     }
 }
