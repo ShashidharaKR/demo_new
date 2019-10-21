@@ -7,12 +7,10 @@ import { Provider } from 'react-redux';
 
 import store from '../../app/store'; //Import the store
 import Home from '../../app/components/home' //Import the component file
-import Login from '../../app/components/LoginScreen';
+import Login from '../../app/components/LoginScreen'; //Import the component file
 
 
 export default class Splash extends React.Component {
-
-  
 
     constructor(props) {
         super(props);
@@ -36,7 +34,6 @@ export default class Splash extends React.Component {
             <Provider store={store}>
                 <Login />
             </Provider>
-
         }
         return (
             <Provider store={store}>
